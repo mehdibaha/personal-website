@@ -1,0 +1,21 @@
+{{ partial "head" . }}
+  <body>
+    <div id="wrap">
+      {{ partial "header" . }}
+      <section id="about">
+        <div class="container">
+        <div class="avatar">
+          <img class="img-circle" src="{{ .Site.BaseURL }}img/{{ .Site.Params.avatar }}" alt="Responsive image">
+        </div>
+        <h3>I'm <strong>{{ .Site.Params.author }}</strong>, a Software Engineer.</h3>
+        <h3>I like computer science, AI and economics.</h3>
+        <h3>I tend to <a href="{{ .Site.BaseURL }}blog/">write stuff</a>, and sometimes <a href="{{ .Site.BaseURL }}projects/">I even code</a>.</h3>
+        <h3><b>If you're looking for me,</b> find me on <a href="http://twitter.com/{{ .Site.Params.Social.Twitter }}">Twitter</a> or <a href="mailto:{{ .Site.Params.Social.Email }}">email</a>.</h3>
+        <h3>For more on my background, check out <a href="{{ .Site.BaseURL }}resume.pdf">my resume</a> (<a href="{{ .Site.BaseURL }}resume_fr.pdf">in french</a>).</h3>
+        {{ partial "social.html" . }}
+        </div>
+      </section>
+    </div>
+    {{ partial "footer" . }}
+  </body>
+</html>

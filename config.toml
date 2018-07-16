@@ -1,0 +1,53 @@
+baseurl = "https://mehdibaha.github.io/"
+languageCode = "en-US"
+title = "Mehdi Baha"
+disqusShortname = "mehdibaha"
+googleAnalytics = "UA-106331831-1"
+theme = "sustain"
+enableRobotsTXT = true
+
+[permalinks]
+  post = "/:slug"
+
+[params]
+  avatar = "profile.png"
+  author = "Mehdi Baha"
+  description = "Software Engineer. AI Enthusiast."
+
+  # Custom assets can be linked with their paths relative to static/
+  custom_css = []
+  custom_js  = []
+
+[params.social]
+  Github        = "mehdibaha"
+  Email         = "elmehdi dot baha at gmail"
+  Twitter       = "elmehdi_baha"
+  LinkedIn      = "mehdibaha"
+  Stackoverflow = "users/2352011/mehdi"
+
+## Main Menu
+[[menu.main]]
+  name = "blog"
+  weight = 100
+  identifier = "blog"
+  url = "/blog/"
+[[menu.main]]
+  name = "projects"
+  identifier = "projects"
+  weight = 200
+  url = "/projects/"
+[[menu.main]]
+  name = "twitter"
+  identifier = "twitter"
+  weight = 300
+  url = "https://twitter.com/elmehdi_baha"
+[[menu.main]]
+  name = "resume"
+  identifier = "resume"
+  weight = 400
+  url = "/files/resume.pdf"
+[[menu.main]]
+  name = "fr"
+  identifier = "fr"
+  weight = 500
+  url = "/files/resume_fr.pdf"

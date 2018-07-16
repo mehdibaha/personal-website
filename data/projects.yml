@@ -1,0 +1,26 @@
+name: Projects
+source:
+- name: Forumorg
+  description: 💼 Web application for recruitment organization
+  url: https://github.com/ForumOrganisation/forumorg
+  icon: ga ga-github
+- name: Machine-learning
+  description: 🚀 Machine Learning case studies (Decision Trees, SVMs, Bayes...)
+  url: https://github.com/mehdibaha/machine-learning
+  icon: ga ga-github
+- name: Cookle
+  description: 🥘 Search engine for finding recipes
+  url: https://github.com/Hexag0ne/cookle
+  icon: ga ga-github
+- name: Burnd
+  description: 🔥 Android application for parties (newsfeed, matching, geofilters...)
+  url: https://github.com/mehdibaha/burnd
+  icon: ga ga-github
+- name: Guido-frontend
+  description: 🗺 React-Native mobile app for amateur travel guides
+  url: https://github.com/o10if/guido-frontend
+  icon: ga ga-github
+- name: Comp
+  description: ⚙️ Compiler for a subset of the C programming language
+  url: https://github.com/o10if/comp
+  icon: ga ga-github
