@@ -37,17 +37,17 @@ enableRobotsTXT = true
   weight = 200
   url = "/projects/"
 [[menu.main]]
-  name = "twitter"
-  identifier = "twitter"
-  weight = 300
-  url = "https://twitter.com/elmehdi_baha"
-[[menu.main]]
-  name = "resume"
+  name = "resume 📃"
   identifier = "resume"
-  weight = 400
-  url = "/files/resume.pdf"
+  weight = 300
+  url = "/resume.pdf"
 [[menu.main]]
-  name = "fr"
+  name = "fr 📃"
   identifier = "fr"
+  weight = 400
+  url = "/resume_fr.pdf"
+[[menu.main]]
+  name = "twitter 🔗"
+  identifier = "twitter"
   weight = 500
-  url = "/files/resume_fr.pdf"
+  url = "https://twitter.com/elmehdi_baha"
