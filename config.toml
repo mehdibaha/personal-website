@@ -40,12 +40,12 @@ enableRobotsTXT = true
   name = "resume 📃"
   identifier = "resume"
   weight = 300
-  url = "/resume.pdf"
+  url = "/resume-en.pdf"
 [[menu.main]]
   name = "fr 📃"
   identifier = "fr"
   weight = 400
-  url = "/resume_fr.pdf"
+  url = "/resume-fr.pdf"
 [[menu.main]]
   name = "twitter 🔗"
   identifier = "twitter"
