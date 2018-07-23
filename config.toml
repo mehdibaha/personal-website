@@ -1,4 +1,4 @@
-baseurl = "https://mehdibaha.com/"
+baseurl = "https://mehdibaha.com"
 languageCode = "en-US"
 title = "Mehdi Baha"
 disqusShortname = "mehdibaha"
@@ -12,7 +12,7 @@ enableRobotsTXT = true
 [params]
   avatar = "profile.png"
   author = "Mehdi Baha"
-  description = "Software Engineer. AI Enthusiast."
+  description = "Software Engineer and tech enthusiast"
 
   # Custom assets can be linked with their paths relative to static/
   custom_css = []
@@ -21,7 +21,7 @@ enableRobotsTXT = true
 [params.social]
   Github        = "mehdibaha"
   Email         = "elmehdi dot baha at gmail"
-  Twitter       = "elmehdi_baha"
+  Twitter       = "@elmehdi_baha"
   LinkedIn      = "mehdibaha"
   Stackoverflow = "users/2352011/mehdi"
 
