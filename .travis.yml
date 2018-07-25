@@ -5,7 +5,7 @@ install:
     - sudo dpkg -i hugo*.deb
 
 script:
-    - hugo -t hugo-sustain
+    - hugo
 
 after_success: |
     if [ -n "$GITHUB_API_KEY" ]; then
@@ -14,10 +14,6 @@ after_success: |
       cd public
       git add -f --ignore-errors --all
       ## Deploy
-      msg="rebuilding site `date`"
-      if [ $# -eq 1 ]
-        then msg="$1"
-      fi
-      git -c user.name='travis' -c user.email='travis' commit -m "$msg"
-      git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG master
+      git -c user.name='Deployment Bot' -c user.email='deploy@travis-ci.org' commit -m "$TRAVIS_COMMIT_MESSAGE"
+      git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$DEPLOYMENT_REPO master
     fi
