@@ -1,26 +1,54 @@
 name: Projects
 source:
-- name: Forumorg
-  description: 💼 Web application for recruitment organization
-  url: https://github.com/ForumOrganisation/forumorg
-  icon: ga ga-github
-- name: Machine-learning
-  description: 🚀 Machine Learning case studies (Decision Trees, SVMs, Bayes...)
-  url: https://github.com/mehdibaha/machine-learning
-  icon: ga ga-github
-- name: Cookle
-  description: 🥘 Search engine for finding recipes
-  url: https://github.com/Hexag0ne/cookle
-  icon: ga ga-github
-- name: Burnd
-  description: 🔥 Android application for parties (newsfeed, matching, geofilters...)
-  url: https://github.com/mehdibaha/burnd
-  icon: ga ga-github
-- name: Guido-frontend
-  description: 🗺 React-Native mobile app for amateur travel guides
-  url: https://github.com/o10if/guido-frontend
-  icon: ga ga-github
-- name: Comp
-  description: ⚙️ Compiler for a subset of the C programming language
-  url: https://github.com/o10if/comp
-  icon: ga ga-github
+  Documentation:
+  - description: "\U0001F4D1 Guides, configuration files and resources for Raspberry\
+      \ Pi"
+    name: raspberrypi
+    url: https://github.com/mehdibaha/raspberrypi
+  - description: "\U0001F4D1 .dotfiles, unix, vim stuff, including macOS settings"
+    name: dotfiles
+    url: https://github.com/mehdibaha/dotfiles
+  School:
+  - description: "\U0001F3EB Arduino/Matlab projects from rocket club"
+    name: rocket-club
+    url: https://github.com/mehdibaha/rocket-club
+  - description: "\U0001F3EB Machine Learning case studies (Decision Trees, SVMs,\
+      \ Bayes...)"
+    name: machine-learning
+    url: https://github.com/mehdibaha/machine-learning
+  - description: "\U0001F3EB Java EE application for restaurant delivery based service"
+    name: gustatif
+    url: https://github.com/mehdibaha/gustatif
+  - description: "\U0001F3EB Multi-threaded application for parking lot simulation\
+      \ written in C"
+    name: parking
+    url: https://github.com/mehdibaha/parking
+  - description: "\U0001F3EB Python web parser for students' grades"
+    name: insa-browser
+    url: https://github.com/mehdibaha/insa-browser
+  Side projects:
+  - description: "\U0001F468\u200D\U0001F4BB My personal website"
+    name: mehdibaha.com
+    url: https://github.com/mehdibaha/mehdibaha.com
+  - description: "\U0001F468\u200D\U0001F4BB Cryptocurrency web app for tracking personal\
+      \ earnings"
+    name: daily-crypto
+    url: https://github.com/mehdibaha/daily-crypto
+  - description: "\U0001F468\u200D\U0001F4BB Python app for daily litterary delight"
+    name: cinqminutesdepause
+    url: https://github.com/mehdibaha/cinqminutesdepause
+  - description: "\U0001F468\u200D\U0001F4BB Android application for parties (newsfeed,\
+      \ matching, geofilters...)"
+    name: burnd
+    url: https://github.com/mehdibaha/burnd
+  - description: "\U0001F468\u200D\U0001F4BB Live simulation of dynamic objects written\
+      \ in JS"
+    name: physics-js
+    url: https://github.com/mehdibaha/physics-js
+  Work:
+  - description: "\U0001F4BC Interview assignment for chatbot start-up"
+    name: freshr-assignment
+    url: https://github.com/mehdibaha/freshr-assignment
+  - description: "\U0001F4BC Interview assignment for human intelligence API startup"
+    name: scale-assignment
+    url: https://github.com/mehdibaha/scale-assignment
