@@ -30,14 +30,8 @@ It will automatically open <http://localhost:1313/> in your browser
 
 ## Publishing
 
-### Travis CI
+### Netlify
 
-To deploy, simply push to regular master and Travis CI will pick it up.
+To deploy, simply push to regular master and Netlify will handle the rest.
 
-### Manual deploy
-
-To deploy manually:
-
-```bash
-./publish.sh # push current state to deployment repo
-```
+Details in `netlify.toml`
