@@ -19,8 +19,8 @@ source:
     url: https://github.com/mehdibaha/insa-browser
   "\U0001F468\u200D\U0001F4BB Side projects":
   - description: My personal website
-    name: mehdibaha.com
-    url: https://github.com/mehdibaha/mehdibaha.com
+    name: personal-website
+    url: https://github.com/mehdibaha/personal-website
   - description: Cryptocurrency web app for tracking personal earnings
     name: daily-crypto
     url: https://github.com/mehdibaha/daily-crypto

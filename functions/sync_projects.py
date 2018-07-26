@@ -1,7 +1,7 @@
 import bs4
+import re
 import requests
 import yaml
-import re
 
 from collections import defaultdict
 
@@ -47,7 +47,7 @@ def gen_projects():
         # check if contains emoji at beginning
         if any(key in description for key in CATEGORIES.keys()):
             # retrieve category of repo based on emoji
-            category = CATEGORIES.get(description[0]) 
+            category = CATEGORIES.get(description[0])
             description = remove_emoji(description).strip("\u200D").strip()
             sources[category].append({'name': name, 'description': description, 'url': url})
     projects = {'name': 'Projects', 'source': sources}
@@ -55,7 +55,7 @@ def gen_projects():
 
 def main():
     projects = gen_projects()
-    yaml.dump(projects, stream=open('data/projects.yml', 'w'), default_flow_style=False)
+    yaml.dump(projects, stream=open('./data/projects.yml', 'w'), default_flow_style=False)
 
 if __name__ == '__main__':
     main()
