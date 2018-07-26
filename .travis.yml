@@ -6,6 +6,7 @@ git:
 
 before_install:
   - echo -e "\n\nmachine github.com\n  $GITHUB_API_KEY\n" >~/.netrc
+  - cat ~/.netrc
   - git submodule update --init --recursive
 
 install:
