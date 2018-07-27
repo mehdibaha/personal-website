@@ -32,6 +32,4 @@ It will automatically open <http://localhost:1313/> in your browser
 
 ### Netlify
 
-To deploy, simply push to regular master and Netlify will handle the rest.
-
-Details in `netlify.toml`
+To deploy, simply push to regular master and Netlify will handle the rest (more details in `netlify.toml`).
