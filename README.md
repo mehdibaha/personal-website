@@ -1,5 +1,5 @@
 # mehdibaha.com
-My [personal website](https://mehdibaha.com).
+This is the repository for my [personal website](https://mehdibaha.com).
 
 ## Quick start
 This website is built using [Hugo](https://gohugo.io/), with the [Sustain theme](https://github.com/nurlansu/hugo-sustain) enabled.
