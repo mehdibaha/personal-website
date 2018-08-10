@@ -54,10 +54,11 @@ def gen_projects():
     return projects
 
 def main():
+    print('generating projects...')
     projects = gen_projects()
+    print('writing projects to yml...')
     yaml.dump(projects, stream=open('./data/projects.yml', 'w'), default_flow_style=False)
+    print('success!')
 
 if __name__ == '__main__':
     main()
-
-main()
