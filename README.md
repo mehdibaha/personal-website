@@ -18,5 +18,5 @@ To deploy, simply push to regular master and Netlify will handle the rest (more 
 
 ### Projects
 The *Projects* list in my website is a list of my Github repositories. To sync the two lists:
-* I added a call to `python sync_projects.py` in the `command` tag in `netlify.toml` so that each build updates the list of repositories displayed on my website.
-* Each push to master triggers a build, but I also added a Netlify build webhook which gets called by a [free cron service](https://cron-job.org/) each Monday, so that I get regular updates of my projecs list even if I don't update my website.
+* I added `python sync_projects.py` to the `command` tag in `netlify.toml` so that each build updates the list of repositories displayed on my website.
+* Since builds are only triggered by pushes to master, I also added a Netlify build webhook which gets called by a [free cron service](https://cron-job.org/) each Monday, so that I get regular updates of my projecs list even if I don't update my website.
