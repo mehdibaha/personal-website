@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "python data/sync_projects.py && hugo"
+command = "python sync_projects.py && hugo"
 
 [context.production.environment]
 HUGO_VERSION = "0.45"
