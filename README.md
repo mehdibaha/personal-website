@@ -2,13 +2,7 @@
 This is the repository for my [personal website](https://mehdibaha.com).
 
 ## Quick start
-This website is built using [Hugo](https://gohugo.io/), with the [Sustain theme](https://github.com/nurlansu/hugo-sustain) enabled.
-
-To setup the repository, run:
-
-```bash
-git clone https://github.com/mehdibaha/personal-website
-```
+This website is built with [Hugo](https://gohugo.io/) and [Sustain theme](https://github.com/nurlansu/hugo-sustain). 
 
 ## Developing
 `hugo serve -D`
