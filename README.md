@@ -12,7 +12,7 @@ It will automatically open <http://localhost:1313/> in your browser
 ## Publishing
 To deploy, simply push to regular master and Netlify will handle the rest (more details in `netlify.toml`).
 
-### Features
+## Features
 * Disqus is used in this website to allow comments in blog articles (`disqusShortname` in config.toml`)
 * Google Analytics is used for web usage statistics (`googleAnalytics` tracking id in config.toml`)
 
