@@ -28,26 +28,24 @@ enableRobotsTXT = true
 ## Main Menu
 [[menu.main]]
   name = "blog"
-  weight = 100
-  identifier = "blog"
+  weight = 1
   url = "/blog/"
 [[menu.main]]
   name = "projects"
-  identifier = "projects"
-  weight = 200
+  weight = 2
   url = "/projects/"
 [[menu.main]]
-  name = "resume 📃"
-  identifier = "resume"
-  weight = 300
-  url = "/resume-en.pdf"
+  name = "resume"
+  weight = 3
+  url = "/Mehdi-Baha-Resume.pdf"
+  pre = "fas fa-file-pdf"
 [[menu.main]]
-  name = "fr 📃"
-  identifier = "fr"
-  weight = 400
-  url = "/resume-fr.pdf"
+  name = "cv"
+  weight = 4
+  url = "/Mehdi-Baha-CV.pdf"
+  pre = "fas fa-file-pdf"
 [[menu.main]]
-  name = "twitter 🔗"
-  identifier = "twitter"
-  weight = 500
+  name = "twitter"
+  weight = 5
   url = "https://twitter.com/elmehdi_baha"
+  pre = "fab fa-twitter"
