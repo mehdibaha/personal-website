@@ -2,21 +2,22 @@
 This is the repository for my [personal website](https://mehdibaha.com).
 
 ## Quick start
-This website is built with [Hugo](https://gohugo.io/) and [Sustain theme](https://github.com/nurlansu/hugo-sustain). 
+This website is built with [Hugo](https://gohugo.io/) and [Sustain theme](https://github.com/nurlansu/hugo-sustain).
 
-## Developing
+### Developing
 `hugo serve -D`
 
 It will automatically open <http://localhost:1313/> in your browser
 
-## Publishing
-To deploy, simply push to regular master and Netlify will handle the rest (more details in `netlify.toml`).
+### Publishing
+To deploy, simply push to **master** and Netlify will handle the rest (more details in `netlify.toml`).
 
-## Features
-* Disqus is used in this website to allow comments in blog articles (`disqusShortname` in config.toml`)
-* Google Analytics is used for web usage statistics (`googleAnalytics` tracking id in config.toml`)
+### Features
+* Disqus is used in this website to allow comments in blog articles (`disqusShortname` in `config.toml`)
+	- Link for the Disqus admin panel: https://mehdibaha.disqus.com/admin/
+* Google Analytics is used for web usage statistics (`googleAnalytics` tracking id in `config.toml`)
+    - Link for the Analytics admin panel: https://analytics.google.com (account: elmehdi.baha@gmail.com)
+* The [projects list](https://mehdibaha.com/projects) is a list of my current Github repositories. To achieve syncing between the two:
+    - I added `python sync_projects.py` to the `command` tag in `netlify.toml` so that each build updates the list of repositories displayed on my website.
+    - Additionally, I added a Netlify build webhook which gets called by a [free cron service](https://cron-job.org/) each Monday.
 
-### Projects
-The *Projects* list in my website is a list of my Github repositories. To sync the two lists:
-* I added `python sync_projects.py` to the `command` tag in `netlify.toml` so that each build updates the list of repositories displayed on my website.
-* Since builds are only triggered by pushes to master, I also added a Netlify build webhook which gets called by a [free cron service](https://cron-job.org/) each Monday. My *Projects* list gets updated now even if I don't update my website.
