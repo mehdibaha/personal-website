@@ -1,4 +1,6 @@
 # mehdibaha.com
+[![Netlify Status](https://api.netlify.com/api/v1/badges/432d3911-222f-46b7-9d34-98dd9417aee4/deploy-status)](https://app.netlify.com/sites/mehdibaha/deploys)
+
 This is the repository for my [personal website](https://mehdibaha.com).
 
 ## Quick start
