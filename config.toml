@@ -12,7 +12,7 @@ enableRobotsTXT = true
 [params]
   avatar = "profile.png"
   author = "Mehdi Baha"
-  description = "Software Engineer and tech enthusiast"
+  description = "Software Engineer and Tech enthusiast"
 
   # Custom assets can be linked with their paths relative to static/
   custom_css = []
