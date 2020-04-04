@@ -1,12 +1,14 @@
 +++
-title = "Risks Of AI And Its Role In Society"
+title = "Risks of AI and its role in society"
 description = ""
 tags = [
-    "tech",
+    "technology",
     "philosophy",
 ]
 date = "2017-10-09"
 +++
+
+*This article is part of a series of essays I've written for an [Introduction to the Philosophy of Science](https://www.kth.se/student/kurser/kurs/DA2210?l=en) course at KTH on the fall of 2017.*
 
 ## AI is a world-eating technology
 

@@ -1,11 +1,12 @@
 +++
-title = "Is Science Becoming Irreproducible?"
+title = "Is science becoming irreproducible?"
 tags = [
     "science",
-    "philosophy",
 ]
 date = "2017-10-05"
 +++
+
+*This article is part of a series of essays I've written for an [Introduction to the Philosophy of Science](https://www.kth.se/student/kurser/kurs/DA2210?l=en) course at KTH on the fall of 2017.*
 
 ## Science is becoming less reproducible
 
@@ -36,8 +37,6 @@ The researchers couldn't replicate any of the findings, and even found evidence 
 An answer as to why this field seems to suffer from this problem more than other ones, would be the giant (and growing) biomedical research industry that encourages researchers to find new treatments but push them far less to confirm if old ones are working.
 
 Even if researchers are less incentivized to reproduce old research, drug companies nevertheless possess huge amounts of data about which research bears out, and which one doesn't. But unfortunately, these companies never disclose this data in fear of bad marketing.
-
-*This article is part of a series of essays around science and philosophy (course assignments for KTH @ Fall 2018).*
 
 ### References
 

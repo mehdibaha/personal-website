@@ -8,6 +8,7 @@ date = "2017-09-12"
 categories = [
     "Meta"
 ]
+draft = true
 +++
 
 I'm a software engineer looking to complete this year an Exchange Semester in Machine Learning at KTH Stockholm.

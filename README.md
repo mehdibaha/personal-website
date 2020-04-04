@@ -7,13 +7,17 @@ This is the repository for my [personal website](https://mehdibaha.com).
 This website is built with [Hugo](https://gohugo.io/) and [Sustain theme](https://github.com/nurlansu/hugo-sustain).
 
 ### Developing
-To begin developement, you need to clone this repository (and the sub-theme) by running this command:
-`git clone --depth 1 https://github.com/mehdibaha/personal-website`
+To begin developement, you need to clone this repository by running the following command:
+```
+git clone --recurse-submodules https://github.com/mehdibaha/personal-website
+```
 
 After making your changes, you can preview the website on <http://localhost:1313/> by running:
-`hugo serve -D`
+```
+hugo serve -D
+```
 
-It will automatically open <http://localhost:1313/> in your browser
+It will automatically open <http://localhost:1313/> on your browser
 
 ### Publishing
 To deploy, simply push to **master** and Netlify will handle the rest (more details in `netlify.toml`).

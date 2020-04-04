@@ -1,13 +1,13 @@
 +++
-title = "On the Unreasonable Effectiveness of Mathematics"
+title = "On the unreasonable effectiveness of mathematics"
 description = ""
 tags = [
-    "science",
-    "philosophy",
+    "mathematics",
 ]
 date = "2017-10-11"
 +++
 
+*This article is part of a series of essays I've written for an [Introduction to the Philosophy of Science](https://www.kth.se/student/kurser/kurs/DA2210?l=en) course at KTH on the fall of 2017.*
 
 ## Mathematics is surprisingly powerful
 
@@ -38,12 +38,9 @@ An answer lies according to Yanofsky from the anthropic principle. That is, if h
 
 So while there can be a universe with no symmetry, maybe we would't have existed to notice it in the first place.
 
-
 ## Conclusion
 
 If mathematics have clearly proven to be so powerful at describing the laws of nature, the answer to why this would be the case haven't been as clear. While certain mysteries remain, we can still be sure that our physical universe can naturally be expressed with the power of mathematics.
-
-*This article is part of a series of essays around science and philosophy (course assignments for KTH @ Fall 2018).*
 
 ### References
 [1] Wigner E (1960) The unreasonable effectiveness of mathematics in the natural sciences.

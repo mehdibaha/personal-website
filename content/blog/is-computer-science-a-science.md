@@ -1,12 +1,13 @@
 +++
-title = "Is Computer Science A Science?"
+title = "Can computer science be considered a science?"
 tags = [
     "science",
-    "philosophy",
-    "tech",
+    "computer science",
 ]
 date = "2017-09-20"
 +++
+
+*This article is part of a series of essays I've written for an [Introduction to the Philosophy of Science](https://www.kth.se/student/kurser/kurs/DA2210?l=en) course at KTH on the fall of 2017.*
 
 ## Computer Science vs Natural Sciences
 
@@ -35,8 +36,6 @@ One would think that answering our main question can be considered enough, but o
 The challenge is clearly not as easy as answering a simple question, but it's possible that it can be riped with benefits to the community. What can be so bad about experimenting more instead of holding subjective experiences as holy truths[5]? Or demonstrating once and for all certain falsehoods and never looking back ?
 
 Surely progress will be slowed down by applying these more rigorous approaches, but by defining our discipline as science, shouldn't we start rising up to its standards ? If computer science has allowed for great technological gems to be unraveled, one could only dream about what they can become when polished with the sharp scrutiny of science.
-
-*This article is part of a series of essays around science and philosophy (course assignments for KTH @ Fall 2018).*
 
 ### References
 
