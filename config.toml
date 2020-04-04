@@ -37,12 +37,12 @@ enableRobotsTXT = true
 [[menu.main]]
   name = "resume"
   weight = 3
-  url = "/Mehdi-Baha-Resume.pdf"
+  url = "/resume.pdf"
   pre = "fas fa-file-pdf"
 [[menu.main]]
   name = "cv"
   weight = 4
-  url = "/Mehdi-Baha-CV.pdf"
+  url = "/cv.pdf"
   pre = "fas fa-file-pdf"
 [[menu.main]]
   name = "twitter"
