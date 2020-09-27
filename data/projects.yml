@@ -1,12 +1,9 @@
 name: Projects
 source:
   "\U0001F3EB School":
-  - description: Arduino/Matlab projects from rocket club
-    name: rocket-club
-    url: https://github.com/mehdibaha/rocket-club
-  - description: Machine Learning case studies (Decision Trees, SVMs, Bayes...)
-    name: machine-learning
-    url: https://github.com/mehdibaha/machine-learning
+  - description: Pong Deep QN implementation w/ TF & OpenAI Gym
+    name: dqn
+    url: https://github.com/mehdibaha/dqn
   - description: Java EE application for restaurant delivery based service
     name: gustatif
     url: https://github.com/mehdibaha/gustatif
@@ -18,32 +15,19 @@ source:
     name: insa-browser
     url: https://github.com/mehdibaha/insa-browser
   "\U0001F468\u200D\U0001F4BB Side projects":
-  - description: My personal website
-    name: personal-website
-    url: https://github.com/mehdibaha/personal-website
-  - description: Cryptocurrency web app for tracking personal earnings
-    name: daily-crypto
-    url: https://github.com/mehdibaha/daily-crypto
-  - description: Python app for daily litterary delight
-    name: cinqminutesdepause
-    url: https://github.com/mehdibaha/cinqminutesdepause
+  - description: Scrollytelling map sharing good news about the pandemic
+    name: covid-map
+    url: https://github.com/mehdibaha/covid-map
   - description: Android application for parties (newsfeed, matching, geofilters...)
     name: burnd
     url: https://github.com/mehdibaha/burnd
-  - description: Live simulation of dynamic objects written in JS
-    name: physics-js
-    url: https://github.com/mehdibaha/physics-js
-  "\U0001F4BC Work":
-  - description: Interview assignment for chatbot start-up
+  - description: Cryptocurrency web app for tracking personal earnings
+    name: daily-crypto
+    url: https://github.com/mehdibaha/daily-crypto
+  "\U0001F4BC Interview assignments":
+  - description: Interview assignment for news chatbot start-up
     name: freshr-assignment
     url: https://github.com/mehdibaha/freshr-assignment
-  - description: Interview assignment for human intelligence API startup
+  - description: Interview assignment for an AI data platform startup
     name: scale-assignment
     url: https://github.com/mehdibaha/scale-assignment
-  "\U0001F4D1 Documentation":
-  - description: Guides, configuration files and resources for Raspberry Pi
-    name: raspberrypi
-    url: https://github.com/mehdibaha/raspberrypi
-  - description: .dotfiles, unix, vim stuff, including macOS settings
-    name: dotfiles
-    url: https://github.com/mehdibaha/dotfiles

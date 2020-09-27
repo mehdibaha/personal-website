@@ -46,4 +46,6 @@ Session.vim
 # auto-generated tag files
 tags
 
+cloud9.sh
+
 # End of https://www.gitignore.io/api/osx,vim,hugo
