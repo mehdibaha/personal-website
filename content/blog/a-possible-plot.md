@@ -1,9 +1,9 @@
 +++
 title = "A Possible Plot"
 tags = [
-    "covid",
+    "essay",
 ]
-date = "2020-10-30"
+date = "2020-11-03"
 +++
 
 ## A Possible Plot
@@ -28,4 +28,4 @@ On our calendars, having still several of those, holidays remind me of our past 
 
 Many years later, our children will learn about our history.
 
-*They will ask us in amazement: "Why did we have to go through this to become united ? ».*
+*They will ask us in amazement: "Why did we have to go through this to realize we are united ? ».*
