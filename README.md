@@ -12,9 +12,13 @@ To begin developement, you need to clone this repository by running the followin
 git clone --recurse-submodules https://github.com/mehdibaha/personal-website
 ```
 
-After making your changes, you can preview the website on <http://localhost:1313/> by running:
+After making your changes, you can preview the website on <http://localhost:8082/> by running:
 ```
-hugo serve -D
+./hugo serve -D -p 8082
+```
+You can specify base url if running in a remote environment:
+```
+./hugo serve -D -p 8082 -b https://7f20805aa5ba4823ad570b35781f9317.vfs.cloud9.eu-west-1.amazonaws.com
 ```
 
 It will automatically open <http://localhost:1313/> on your browser

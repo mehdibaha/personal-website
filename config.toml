@@ -10,7 +10,7 @@ enableRobotsTXT = true
   post = "/:slug"
 
 [params]
-  avatar = "profile.png"
+  avatar = "profile.jpeg"
   author = "Mehdi Baha"
   description = "Software Engineer and Tech enthusiast"
 
