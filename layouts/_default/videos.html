@@ -1,0 +1,21 @@
+<section id="projects">
+  <div class="container">
+    <h3>{{ .Site.Data.projects.name }}</h3>
+    <div class="panel panel-default">
+      <div class="panel-body">
+      {{ range $i, $cat := .Site.Data.projects.source  }}
+        <h4>{{ $i }}</h4>
+        {{ range $j, $repo := $cat }}
+          <h5>
+            <strong><a href="{{ .url }}">{{ .name }}</a></strong>&nbsp;-&nbsp;{{ .description }}
+          </h5>
+        {{ end }}
+        <br>
+      {{ end }}
+      </div>
+      <div class="panel-footer">
+      <strong>Fun fact: This list is <a target="_blank" href="https://github.com/mehdibaha/personal-website/blob/master/sync_projects.py">automatically generated</a> from my list of GitHub repositories</strong>
+      </div>
+    </div>
+  </div>
+</section>
