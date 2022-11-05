@@ -35,10 +35,6 @@ enableRobotsTXT = true
   weight = 2
   url = "/projects/"
 [[menu.main]]
-  name = "videos"
-  weight = 2
-  url = "/videos/"
-[[menu.main]]
   name = "resume"
   weight = 3
   url = "/resume.pdf"
