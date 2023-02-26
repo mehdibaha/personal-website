@@ -10,3 +10,6 @@ framework = "hugo"
 
 [functions]
 directory = "crons"
+
+[build.environment]
+AWS_LAMBDA_JS_RUNTIME = "nodejs12.x"
