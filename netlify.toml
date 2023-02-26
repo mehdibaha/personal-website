@@ -4,3 +4,7 @@ command = "python sync_projects.py && hugo"
 
 [context.production.environment]
 HUGO_VERSION = "0.68.3"
+
+[functions]
+directory = "crons"
+node_bundler = "esbuild"
