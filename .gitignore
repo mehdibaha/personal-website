@@ -45,6 +45,7 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+.env
 
 cloud9.sh
 node_modules
