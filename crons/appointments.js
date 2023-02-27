@@ -45,4 +45,4 @@ const handler = async function(event, context) {
   return { statusCode: 200 }
 };
 
-exports.handler = schedule("*/10 * * * *", handler);
+exports.handler = schedule("*/1 * * * *", handler);
