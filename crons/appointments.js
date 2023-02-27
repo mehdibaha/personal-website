@@ -22,22 +22,15 @@ const handler = async function(event, context) {
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage()
-  await page.goto(process.env.APPOINTMENTS_URL);
+  await page.goto(process.env.DATES_URL)
   await page.waitForSelector("#username-label")
   await page.type("#username", process.env.ACCOUNT_USERNAME)
   await page.type("#password", process.env.ACCOUNT_PASSWORD)
   await page.click("button[type='submit']")
   await page.waitForSelector("button[name='view_search']")
-  const match = (await page.content()).match(/n'est actuellement disponible/gi)
-  if (match) {
+  const match = await page.evaluate(() => window.find("février")) || await page.evaluate(() => window.find("mars"))
+  if (!match) {
     console.log("no appointment found")
-    return { statusCode: 404 }
-  }
-  await page.goto(process.env.DATES_URL)
-  await page.waitForSelector("div.nextAvailableAppointments li a")
-  const content = await page.content()
-  if (!content.match(/mars/gi) && !content.match(/février/gi)) {
-    console.log("found but no in march or february")
     return { statusCode: 404 }
   }
   const info = await transporter.sendMail({
