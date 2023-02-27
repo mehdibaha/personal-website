@@ -15,6 +15,7 @@ const transporter = nodemailer.createTransport(
 
 const handler = async function(event, context) {
   console.log(process.version)
+  console.log(await chromium.executablePath)
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
