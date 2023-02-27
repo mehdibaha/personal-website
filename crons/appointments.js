@@ -1,5 +1,5 @@
 const { schedule } = require("@netlify/functions");
-const chromium = require('chrome-aws-lambda');
+const chromium = require('@sparticuz/chromium');
 const puppeteer = require('puppeteer-core');
 const nodemailer = require("nodemailer");
 const mg = require("nodemailer-mailgun-transport");
@@ -14,12 +14,10 @@ const transporter = nodemailer.createTransport(
 );
 
 const handler = async function(event, context) {
-  console.log(process.version)
-  console.log(await chromium.executablePath)
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || await chromium.executablePath,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || await chromium.executablePath(),
     headless: chromium.headless,
     ignoreHTTPSErrors: true,
   });
