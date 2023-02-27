@@ -33,6 +33,13 @@ const handler = async function(event, context) {
     console.log("no appointment found")
     return { statusCode: 404 }
   }
+  await page.goto(process.env.DATES_URL)
+  await page.waitForSelector("div.nextAvailableAppointments li a")
+  const content = await page.content()
+  if (!content.match(/mars/gi) && !content.match(/février/gi)) {
+    console.log("found but no in march or february")
+    return { statusCode: 404 }
+  }
   const info = await transporter.sendMail({
     from: `mailgun@${process.env.MAILGUN_DOMAIN}`,
     to: process.env.MAILGUN_SENDER,
@@ -44,4 +51,4 @@ const handler = async function(event, context) {
   return { statusCode: 200 }
 };
 
-exports.handler = schedule("*/1 * * * *", handler);
+exports.handler = schedule("*/5 * * * *", handler);
