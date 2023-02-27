@@ -16,8 +16,10 @@ const transporter = nodemailer.createTransport(
 const handler = async function(event, context) {
   const browser = await puppeteer.launch({
     args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || await chromium.executablePath,
-    headless: true,
+    headless: chromium.headless,
+    ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage()
   await page.goto(process.env.APPOINTMENTS_URL);
