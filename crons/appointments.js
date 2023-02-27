@@ -30,7 +30,8 @@ const handler = async function(event, context) {
   await page.waitForSelector("button[name='view_search']")
   const match = (await page.content()).match(/n'est actuellement disponible/gi)
   if (match) {
-    return {statusCode: 404}
+    console.log("no appointment found")
+    return { statusCode: 404 }
   }
   const info = await transporter.sendMail({
     from: `mailgun@${process.env.MAILGUN_DOMAIN}`,
@@ -40,9 +41,7 @@ const handler = async function(event, context) {
   });
   console.log(`Alert sent: ${info.messageId}`);
   await browser.close();
-  return {
-      statusCode: 200,
-  }
+  return { statusCode: 200 }
 };
 
 exports.handler = schedule("*/10 * * * *", handler);
