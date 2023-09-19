@@ -35,16 +35,6 @@ enableRobotsTXT = true
   weight = 2
   url = "/projects/"
 [[menu.main]]
-  name = "resume"
-  weight = 3
-  url = "/resume.pdf"
-  pre = "fas fa-file-pdf"
-[[menu.main]]
-  name = "cv"
-  weight = 4
-  url = "/cv.pdf"
-  pre = "fas fa-file-pdf"
-[[menu.main]]
   name = "twitter"
   weight = 5
   url = "https://twitter.com/elmehdi_baha"
