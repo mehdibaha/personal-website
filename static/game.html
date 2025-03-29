@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Infinite Dopamine</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-color: #1a1a2e; /* Deep blue background for a cosmic feel */
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
         }
+
         #canvas {
             width: 100vw;
             height: 100vh;
             display: block;
         }
+
         #dialogue {
             position: fixed;
             top: 0;
@@ -25,12 +28,13 @@
             display: none;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            background-color: rgba(0, 0, 0, 0.5);
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
+
         #dialogue-content {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly translucent white */
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 25px;
             border-radius: 15px;
             text-align: center;
@@ -39,44 +43,50 @@
             font-weight: 400;
             color: #333;
             max-width: 85%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
+
 <body>
     <canvas id="canvas"></canvas>
     <div id="dialogue">
         <div id="dialogue-content"></div>
     </div>
+
+    <!-- Include Three.js and OrbitControls -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Include canvas-confetti for fun bursts -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
     <script>
         // Define relationship themes with pastel colors and dialogues
         const themes = [
-            { name: "Playful Banter", color: 0xFF6B6B, dialogue: "Tu veux m’emmener qq part pour me briser psychologiquement avec tes vannes?" },
-            { name: "Intellectual Talk", color: 0x6BCBFF, dialogue: "Tellement intéressant, on ne sait pas de quoi la majorité de l’univers est fait" },
-            { name: "Affection", color: 0xFF6B9B, dialogue: "Je t’aime trop en fait" },
-            { name: "Travel Plans", color: 0x6BFF8E, dialogue: "J’aime bien l’idée de Dublin" },
-            { name: "Everyday Life", color: 0xFFF76B, dialogue: "Wa y a une dame qui pleure super fort dans le métro, c’est dur" },
-            { name: "Inside Jokes", color: 0xCB6BFF, dialogue: "sweatshirt" }
+            {name: "Playful Banter", color: 0xFF6B6B, dialogue: "Tu veux m’emmener qq part pour me briser psychologiquement avec tes vannes?"},
+            {name: "Intellectual Talk", color: 0x6BCBFF, dialogue: "Tellement intéressant, on ne sait pas de quoi la majorité de l’univers est fait"},
+            {name: "Affection", color: 0x900C3F, dialogue: "Je t’aime trop en fait"},
+            {name: "Travel Plans", color: 0x6BFF8E, dialogue: "J’aime bien l’idée de Dublin"},
+            {name: "Everyday Life", color: 0xFFF76B, dialogue: "Wa y a une dame qui pleure super fort dans le métro, c’est dur"},
+            {name: "Inside Jokes", color: 0xCB6BFF, dialogue: "sweatshirt"}
         ];
 
         // Initialize Three.js scene, camera, and renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(0, 0, 5);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+        const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas'), antialias: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x1a1a2e); // Match body background
+        renderer.setClearColor(0x1a1a2e);
 
-        // Add a starry background for beauty
+        // Create a twinkling starfield
         const starsGeometry = new THREE.BufferGeometry();
-        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, sizeAttenuation: true });
+        const starsMaterial = new THREE.PointsMaterial({color: 0xffffff, size: 0.7, sizeAttenuation: true});
         const starsPositions = [];
-        for (let i = 0; i < 1500; i++) { // More stars for richness
-            const x = (Math.random() - 0.5) * 2000;
-            const y = (Math.random() - 0.5) * 2000;
-            const z = (Math.random() - 0.5) * 2000;
+        for (let i = 0; i < 3000; i++) {
+            const x = (Math.random() - 0.5) * 2500;
+            const y = (Math.random() - 0.5) * 2500;
+            const z = (Math.random() - 0.5) * 2500;
             starsPositions.push(x, y, z);
         }
         starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsPositions, 3));
@@ -86,22 +96,22 @@
         // Function to create textured faces with text labels
         function createTextTexture(text, color) {
             const canvas = document.createElement('canvas');
-            canvas.width = 512; // Higher resolution for clarity
+            canvas.width = 512;
             canvas.height = 512;
             const ctx = canvas.getContext('2d');
-            
+
             // Fill with pastel color
             ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
             ctx.fillRect(0, 0, 512, 512);
-            
-            // Add a subtle gradient overlay
+
+            // Add a subtle gradient overlay for extra depth
             const gradient = ctx.createLinearGradient(0, 0, 512, 512);
             gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
             gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, 512, 512);
-            
-            // Draw text with shadow
+
+            // Draw text with shadow for clarity
             ctx.font = 'bold 60px Roboto';
             ctx.fillStyle = 'white';
             ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
@@ -111,15 +121,15 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(text, 256, 256);
-            
+
             return new THREE.CanvasTexture(canvas);
         }
 
-        // Create materials for each cube face
+        // Create materials for each cube face with soft glow effect
         const materials = themes.map(theme => {
             return new THREE.MeshPhongMaterial({
                 map: createTextTexture(theme.name, theme.color),
-                shininess: 30 // Slight sheen for a polished look
+                shininess: 50
             });
         });
 
@@ -127,33 +137,50 @@
         const geometry = new THREE.BoxGeometry(2, 2, 2);
         const cube = new THREE.Mesh(geometry, materials);
         scene.add(cube);
-        cube.rotation.set(THREE.Math.degToRad(35), THREE.Math.degToRad(45), 0); // Isometric start
+        cube.rotation.set(THREE.Math.degToRad(35), THREE.Math.degToRad(45), 0);
 
-        // Add elegant lighting
+        // Add elegant lighting with an extra spotlight for a dreamy glow
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
-        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        const pointLight = new THREE.PointLight(0xffffff, 1.2, 100);
         pointLight.position.set(5, 5, 5);
         scene.add(pointLight);
+        const spotLight = new THREE.SpotLight(0xffffff, 1.5, 200, Math.PI / 8);
+        spotLight.position.set(-5, 10, 5);
+        scene.add(spotLight);
 
         // Set up OrbitControls for smooth rotation
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.enableZoom = false; // Focus on rotation only
+        controls.dampingFactor = 0.08;
+        controls.enableZoom = false;
         controls.enablePan = false;
 
         // Raycasting for interaction
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
 
-        // Handle touch events
+        // Create an oscillator sound for a fun pop sound on touch
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playPopSound() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.frequency.value = 600;
+            oscillator.type = "square";
+            gainNode.gain.value = 0.1;
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), 100);
+        }
+
+        // Handle touch events and add confetti burst
         function onTouchStart(event) {
             event.preventDefault();
             const dialogue = document.getElementById('dialogue');
             if (dialogue.style.display === 'flex') {
                 dialogue.style.opacity = '0';
-                setTimeout(() => { dialogue.style.display = 'none'; }, 300);
+                setTimeout(() => {dialogue.style.display = 'none';}, 300);
             } else {
                 const touch = event.touches[0];
                 mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
@@ -165,23 +192,36 @@
                     const theme = themes[materialIndex];
                     document.getElementById('dialogue-content').innerText = theme.dialogue;
                     dialogue.style.display = 'flex';
-                    setTimeout(() => { dialogue.style.opacity = '1'; }, 10); // Smooth fade-in
+                    setTimeout(() => {dialogue.style.opacity = '1';}, 10);
+                    playPopSound();
+                    // Trigger a confetti burst from the touch location
+                    confetti({
+                        particleCount: 50,
+                        spread: 70,
+                        origin: {
+                            x: touch.clientX / window.innerWidth,
+                            y: touch.clientY / window.innerHeight
+                        }
+                    });
                 }
             }
         }
 
-        // Event listeners
         document.getElementById('canvas').addEventListener('touchstart', onTouchStart);
         document.getElementById('dialogue').addEventListener('touchstart', () => {
             const dialogue = document.getElementById('dialogue');
             dialogue.style.opacity = '0';
-            setTimeout(() => { dialogue.style.display = 'none'; }, 300);
+            setTimeout(() => {dialogue.style.display = 'none';}, 300);
         });
 
-        // Animation loop
+        // Animation loop with subtle star twinkling effect
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
+
+            // Twinkle stars by slightly varying their material opacity
+            starsMaterial.opacity = 0.5 + Math.sin(Date.now() * 0.002) * 0.5;
+
             renderer.render(scene, camera);
         }
         animate();
@@ -194,4 +234,5 @@
         });
     </script>
 </body>
+
 </html>
