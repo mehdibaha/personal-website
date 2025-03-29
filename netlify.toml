@@ -7,3 +7,9 @@ HUGO_VERSION = "0.68.3"
 
 [dev]
 framework = "hugo"
+
+[[redirects]]
+  from = "https://justine.mehdibaha.com/*"
+  to = "/game.html"
+  status = 200
+  force = true
