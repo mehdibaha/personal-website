@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,14 +10,13 @@
             margin: 0;
             overflow: hidden;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
+            font-family: 'Roboto', sans-serif;
         }
-
         #canvas {
             width: 100vw;
             height: 100vh;
             display: block;
         }
-
         #dialogue {
             position: fixed;
             top: 0;
@@ -32,56 +30,128 @@
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
-
         #dialogue-content {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 25px;
             border-radius: 15px;
             text-align: center;
-            font-family: 'Roboto', sans-serif;
             font-size: 20px;
             font-weight: 400;
             color: #333;
             max-width: 85%;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
+        #dialogue {
+            pointer-events: none;
+        }
+        #dialogue-content, #next-button {
+            pointer-events: auto;
+        }
+        #next-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #start-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #score {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: white;
+        }
     </style>
 </head>
-
 <body>
     <canvas id="canvas"></canvas>
     <div id="dialogue">
         <div id="dialogue-content"></div>
+        <button id="next-button" style="display: none;">Next</button>
     </div>
+    <button id="start-button">Start Guessing</button>
+    <div id="score">Score: 0</div>
 
-    <!-- Include Three.js and OrbitControls -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <!-- Include canvas-confetti for fun bursts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <script>
         // Define relationship themes with pastel colors and dialogues
         const themes = [
-            {name: "Playful Banter", color: 0xFF6B6B, dialogue: "Tu veux m’emmener qq part pour me briser psychologiquement avec tes vannes?"},
-            {name: "Intellectual Talk", color: 0x6BCBFF, dialogue: "Tellement intéressant, on ne sait pas de quoi la majorité de l’univers est fait"},
-            {name: "Affection", color: 0x900C3F, dialogue: "Je t’aime trop en fait"},
-            {name: "Travel Plans", color: 0x6BFF8E, dialogue: "J’aime bien l’idée de Dublin"},
-            {name: "Everyday Life", color: 0xFFF76B, dialogue: "Wa y a une dame qui pleure super fort dans le métro, c’est dur"},
-            {name: "Inside Jokes", color: 0xCB6BFF, dialogue: "sweatshirt"}
+            { name: "Playful Banter", color: 0xFF6B6B, dialogue: "Tu veux m’emmener qq part pour me briser psychologiquement avec tes vannes?" },
+            { name: "Intellectual Talk", color: 0x6BCBFF, dialogue: "Tellement intéressant, on ne sait pas de quoi la majorité de l’univers est fait" },
+            { name: "Affection", color: 0x900C3F, dialogue: "Je t’aime trop en fait" },
+            { name: "Travel Plans", color: 0x6BFF8E, dialogue: "J’aime bien l’idée de Dublin" },
+            { name: "Everyday Life", color: 0xFFF76B, dialogue: "Wa y a une dame qui pleure super fort dans le métro, c’est dur" },
+            { name: "Inside Jokes", color: 0xCB6BFF, dialogue: "sweatshirt" }
+        ];
+
+        // Conversation messages with their correct theme indices
+        const messages = [
+            { text: "Mdr je viens de me faire appeler par Les Jeunes Horizons du 13 😂", theme: 4 }, // Everyday Life
+            { text: "Tu sais que y’a 3 ans les jeunes avec Macron ont essayé de me débaucher pour la campagne", theme: 4 }, // Everyday Life
+            { text: "Ok j’adore avec une appli de messages avec UN seul contact 😍", theme: 0 }, // Playful Banter
+            { text: "Do you miss me yet?", theme: 2 }, // Affection
+            { text: "Text-bombing you through 3 different apps apparently doesnt increase the chance of getting a response", theme: 0 }, // Playful Banter
+            { text: "holy shit... i slept... a lot !", theme: 4 }, // Everyday Life
+            { text: "Je veux le debrief détaillé de cette soirée au Chope moi", theme: 4 }, // Everyday Life
+            { text: "Si ça se trouve Claire a organisé des olympiades", theme: 0 }, // Playful Banter
+            { text: "Je viens de me rappeler que t’avais mangé tout le donut", theme: 0 }, // Playful Banter
+            { text: "Justine after I ate the donut: “Mm, he chose war.”", theme: 0 }, // Playful Banter
+            { text: "Je suis trop bien dans ton pull. Je fais un peu un Vis ma vie de Mehdi la moula, jeune start-upper en quête de sensations dans les comedy clubs", theme: 2 }, // Affection
+            { text: "Je vais avoir 30 ans, j’ai une hypothèque convenable, zéro défaut érectile, et la vie devant moi!", theme: 0 }, // Playful Banter
+            { text: "Chérie, je suis pas un bon parti, car chui pas dans le bon parti", theme: 0 }, // Playful Banter
+            { text: "Ça part sur Suno direct ça", theme: 5 }, // Inside Jokes
+            { text: "Je t’aime", theme: 2 }, // Affection
+            { text: "Tu me manques déjà", theme: 2 }, // Affection
+            { text: "J’ai l’impression d’etre un hacker dans cette appli", theme: 0 }, // Playful Banter
+            { text: "LE LIVREUR DE PHO EST REVENU MEHDI", theme: 5 }, // Inside Jokes
+            { text: "This is called dedication to a joke.", theme: 0 }, // Playful Banter
+            { text: "You look 19 cause u fun as hell", theme: 2 }, // Affection
+            { text: "Plenty of time to have all 5 of your babies", theme: 0 }, // Playful Banter
+            { text: "We want them white high IQ", theme: 0 }, // Playful Banter
+            { text: "Tu veux boire un café avec Sakina ?", theme: 3 }, // Travel Plans (meeting-related)
+            { text: "J’ai dormi dans ton pull comme une adolescente", theme: 2 }, // Affection
+            { text: "Je suis archi fatiguée- je suis restée chez mes parents du coup", theme: 4 }, // Everyday Life
+            { text: "Je vais tenter de me rentrer une petite sieste bientôt", theme: 4 }, // Everyday Life
+            { text: "Je regarde un reportage super intéressant, un The Wire français, tu kifferais bcp, le volet social est incr", theme: 1 }, // Intellectual Talk
+            { text: "Il a une explication sur les cycles de paupérisation/gentrification dans les villes super insightful", theme: 1 }, // Intellectual Talk
+            { text: "Mais tu sais que les perspectives gaucho ne disent pas que des conneries right?", theme: 1 }, // Intellectual Talk
+            { text: "Je vais écrire 3 sketchs pendant ces 10 prochains jours", theme: 4 }, // Everyday Life
+            { text: "Je dois m’y mettre aussi et tu me motives juste haha", theme: 4 }, // Everyday Life
+            { text: "Your merguez is lovely", theme: 0 }, // Playful Banter
+            { text: "Je regardais le tableau de Hopper et je pensais à toi y a 5 min ❤️", theme: 2 }, // Affection
+            { text: "Our relationship feels like a conversation that started three months ago, and never ended.", theme: 2 } // Affection
         ];
 
         // Initialize Three.js scene, camera, and renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(0, 0, 5);
-        const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('canvas'), antialias: true});
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0x1a1a2e);
 
         // Create a twinkling starfield
         const starsGeometry = new THREE.BufferGeometry();
-        const starsMaterial = new THREE.PointsMaterial({color: 0xffffff, size: 0.7, sizeAttenuation: true});
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7, sizeAttenuation: true });
         const starsPositions = [];
         for (let i = 0; i < 3000; i++) {
             const x = (Math.random() - 0.5) * 2500;
@@ -99,19 +169,13 @@
             canvas.width = 512;
             canvas.height = 512;
             const ctx = canvas.getContext('2d');
-
-            // Fill with pastel color
             ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
             ctx.fillRect(0, 0, 512, 512);
-
-            // Add a subtle gradient overlay for extra depth
             const gradient = ctx.createLinearGradient(0, 0, 512, 512);
             gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
             gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, 512, 512);
-
-            // Draw text with shadow for clarity
             ctx.font = 'bold 60px Roboto';
             ctx.fillStyle = 'white';
             ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
@@ -121,17 +185,14 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(text, 256, 256);
-
             return new THREE.CanvasTexture(canvas);
         }
 
-        // Create materials for each cube face with soft glow effect
-        const materials = themes.map(theme => {
-            return new THREE.MeshPhongMaterial({
-                map: createTextTexture(theme.name, theme.color),
-                shininess: 50
-            });
-        });
+        // Create materials for each cube face
+        const materials = themes.map(theme => new THREE.MeshPhongMaterial({
+            map: createTextTexture(theme.name, theme.color),
+            shininess: 50
+        }));
 
         // Create and position the cube
         const geometry = new THREE.BoxGeometry(2, 2, 2);
@@ -139,7 +200,7 @@
         scene.add(cube);
         cube.rotation.set(THREE.Math.degToRad(35), THREE.Math.degToRad(45), 0);
 
-        // Add elegant lighting with an extra spotlight for a dreamy glow
+        // Add lighting
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
         const pointLight = new THREE.PointLight(0xffffff, 1.2, 100);
@@ -149,7 +210,7 @@
         spotLight.position.set(-5, 10, 5);
         scene.add(spotLight);
 
-        // Set up OrbitControls for smooth rotation
+        // Set up OrbitControls
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.08;
@@ -160,7 +221,7 @@
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
 
-        // Create an oscillator sound for a fun pop sound on touch
+        // Pop sound effect
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playPopSound() {
             const oscillator = audioCtx.createOscillator();
@@ -174,13 +235,27 @@
             setTimeout(() => oscillator.stop(), 100);
         }
 
-        // Handle touch events and add confetti burst
+        let currentMessage = null;
+        let score = 0;
+
+        // Start a new guess
+        function startNewGuess() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            currentMessage = messages[randomIndex];
+            document.getElementById('dialogue-content').innerText = `Guess the category for this message: "${currentMessage.text}"`;
+            document.getElementById('next-button').style.display = 'none';
+            const dialogue = document.getElementById('dialogue');
+            dialogue.style.display = 'flex';
+            setTimeout(() => { dialogue.style.opacity = '1'; }, 10);
+        }
+
+        // Handle touch events
         function onTouchStart(event) {
             event.preventDefault();
             const dialogue = document.getElementById('dialogue');
-            if (dialogue.style.display === 'flex') {
+            if (dialogue.style.display === 'flex' && currentMessage === null) {
                 dialogue.style.opacity = '0';
-                setTimeout(() => {dialogue.style.display = 'none';}, 300);
+                setTimeout(() => { dialogue.style.display = 'none'; }, 300);
             } else {
                 const touch = event.touches[0];
                 mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
@@ -189,39 +264,51 @@
                 const intersects = raycaster.intersectObject(cube);
                 if (intersects.length > 0) {
                     const materialIndex = intersects[0].face.materialIndex;
-                    const theme = themes[materialIndex];
-                    document.getElementById('dialogue-content').innerText = theme.dialogue;
-                    dialogue.style.display = 'flex';
-                    setTimeout(() => {dialogue.style.opacity = '1';}, 10);
-                    playPopSound();
-                    // Trigger a confetti burst from the touch location
-                    confetti({
-                        particleCount: 50,
-                        spread: 70,
-                        origin: {
-                            x: touch.clientX / window.innerWidth,
-                            y: touch.clientY / window.innerHeight
+                    if (currentMessage !== null) {
+                        const dialogueContent = document.getElementById('dialogue-content');
+                        if (materialIndex === currentMessage.theme) {
+                            score++;
+                            document.getElementById('score').innerText = `Score: ${score}`;
+                            dialogueContent.innerText = `Correct! It was ${themes[materialIndex].name}`;
+                            confetti({
+                                particleCount: 100,
+                                spread: 70,
+                                origin: { x: touch.clientX / window.innerWidth, y: touch.clientY / window.innerHeight }
+                            });
+                            playPopSound();
+                        } else {
+                            dialogueContent.innerText = `Incorrect. It was ${themes[currentMessage.theme].name}`;
                         }
-                    });
+                        document.getElementById('next-button').style.display = 'block';
+                        currentMessage = null;
+                    } else {
+                        const theme = themes[materialIndex];
+                        document.getElementById('dialogue-content').innerText = theme.dialogue;
+                        dialogue.style.display = 'flex';
+                        setTimeout(() => { dialogue.style.opacity = '1'; }, 10);
+                        playPopSound();
+                        confetti({
+                            particleCount: 50,
+                            spread: 70,
+                            origin: { x: touch.clientX / window.innerWidth, y: touch.clientY / window.innerHeight }
+                        });
+                    }
                 }
             }
         }
 
         document.getElementById('canvas').addEventListener('touchstart', onTouchStart);
-        document.getElementById('dialogue').addEventListener('touchstart', () => {
-            const dialogue = document.getElementById('dialogue');
-            dialogue.style.opacity = '0';
-            setTimeout(() => {dialogue.style.display = 'none';}, 300);
+        document.getElementById('start-button').addEventListener('click', startNewGuess);
+        document.getElementById('next-button').addEventListener('click', () => {
+            startNewGuess();
+            document.getElementById('next-button').style.display = 'none';
         });
 
-        // Animation loop with subtle star twinkling effect
+        // Animation loop
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
-
-            // Twinkle stars by slightly varying their material opacity
             starsMaterial.opacity = 0.5 + Math.sin(Date.now() * 0.002) * 0.5;
-
             renderer.render(scene, camera);
         }
         animate();
@@ -234,5 +321,4 @@
         });
     </script>
 </body>
-
 </html>
