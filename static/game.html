@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Dopamine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #1a1a2e; /* Deep blue background for a cosmic feel */
+        }
+        #canvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+        #dialogue {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #dialogue-content {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly translucent white */
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #333;
+            max-width: 85%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="dialogue">
+        <div id="dialogue-content"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        // Define relationship themes with pastel colors and dialogues
+        const themes = [
+            { name: "Playful Banter", color: 0xFF6B6B, dialogue: "Tu veux m’emmener qq part pour me briser psychologiquement avec tes vannes?" },
+            { name: "Intellectual Talk", color: 0x6BCBFF, dialogue: "Tellement intéressant, on ne sait pas de quoi la majorité de l’univers est fait" },
+            { name: "Affection", color: 0xFF6B9B, dialogue: "Je t’aime trop en fait" },
+            { name: "Travel Plans", color: 0x6BFF8E, dialogue: "J’aime bien l’idée de Dublin" },
+            { name: "Everyday Life", color: 0xFFF76B, dialogue: "Wa y a une dame qui pleure super fort dans le métro, c’est dur" },
+            { name: "Inside Jokes", color: 0xCB6BFF, dialogue: "sweatshirt" }
+        ];
+
+        // Initialize Three.js scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 5);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x1a1a2e); // Match body background
+
+        // Add a starry background for beauty
+        const starsGeometry = new THREE.BufferGeometry();
+        const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1, sizeAttenuation: true });
+        const starsPositions = [];
+        for (let i = 0; i < 1500; i++) { // More stars for richness
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = (Math.random() - 0.5) * 2000;
+            starsPositions.push(x, y, z);
+        }
+        starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsPositions, 3));
+        const stars = new THREE.Points(starsGeometry, starsMaterial);
+        scene.add(stars);
+
+        // Function to create textured faces with text labels
+        function createTextTexture(text, color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512; // Higher resolution for clarity
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            
+            // Fill with pastel color
+            ctx.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Add a subtle gradient overlay
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Draw text with shadow
+            ctx.font = 'bold 60px Roboto';
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+            ctx.shadowOffsetX = 3;
+            ctx.shadowOffsetY = 3;
+            ctx.shadowBlur = 5;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 256, 256);
+            
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // Create materials for each cube face
+        const materials = themes.map(theme => {
+            return new THREE.MeshPhongMaterial({
+                map: createTextTexture(theme.name, theme.color),
+                shininess: 30 // Slight sheen for a polished look
+            });
+        });
+
+        // Create and position the cube
+        const geometry = new THREE.BoxGeometry(2, 2, 2);
+        const cube = new THREE.Mesh(geometry, materials);
+        scene.add(cube);
+        cube.rotation.set(THREE.Math.degToRad(35), THREE.Math.degToRad(45), 0); // Isometric start
+
+        // Add elegant lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(5, 5, 5);
+        scene.add(pointLight);
+
+        // Set up OrbitControls for smooth rotation
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false; // Focus on rotation only
+        controls.enablePan = false;
+
+        // Raycasting for interaction
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        // Handle touch events
+        function onTouchStart(event) {
+            event.preventDefault();
+            const dialogue = document.getElementById('dialogue');
+            if (dialogue.style.display === 'flex') {
+                dialogue.style.opacity = '0';
+                setTimeout(() => { dialogue.style.display = 'none'; }, 300);
+            } else {
+                const touch = event.touches[0];
+                mouse.x = (touch.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObject(cube);
+                if (intersects.length > 0) {
+                    const materialIndex = intersects[0].face.materialIndex;
+                    const theme = themes[materialIndex];
+                    document.getElementById('dialogue-content').innerText = theme.dialogue;
+                    dialogue.style.display = 'flex';
+                    setTimeout(() => { dialogue.style.opacity = '1'; }, 10); // Smooth fade-in
+                }
+            }
+        }
+
+        // Event listeners
+        document.getElementById('canvas').addEventListener('touchstart', onTouchStart);
+        document.getElementById('dialogue').addEventListener('touchstart', () => {
+            const dialogue = document.getElementById('dialogue');
+            dialogue.style.opacity = '0';
+            setTimeout(() => { dialogue.style.display = 'none'; }, 300);
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
