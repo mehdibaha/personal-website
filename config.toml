@@ -1,7 +1,6 @@
 baseurl = "https://mehdibaha.com/"
 languageCode = "en-US"
 title = "Mehdi Baha"
-disqusShortname = "mehdibaha"
 googleAnalytics = "UA-106331831-1"
 theme = "hugo-sustain"
 enableRobotsTXT = true
